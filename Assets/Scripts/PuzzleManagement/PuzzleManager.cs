@@ -40,8 +40,6 @@ public class PuzzleManager : MonoBehaviour
                 currentPuzzle.SetUp();
             }
         }
-
-
     }
 
     public void NextPuzzle(iPuzzle puzzle)
