@@ -10,23 +10,36 @@ public class IntEvent : UnityEvent<int>
 }
 public class ScoreManager : MonoBehaviour
 {
-    public IntEvent ScoreEvent;
+    private IntEvent ScoreEvent;
     private int _score;
+    public Coroutine increaseScore;
+    public int points;
+    public float animationSpeed;
     // Start is called before the first frame update
     void Start()
     {
         _score = 0;
         //invoke event with an integer as input. 
-        if(ScoreEvent == null)
+        if (ScoreEvent == null)
         {
             ScoreEvent = new IntEvent();
         }
         ScoreEvent.AddListener(ManageScore);
+
+        animationSpeed = 1;
     }
 
-   void ManageScore(int point)
+    private void Update()
     {
-        _score += point;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ScoreEvent.Invoke(points);
+        }
+    }
+
+    void ManageScore(int point)
+    {
+        increaseScore = StartCoroutine(IncreaseOverX(point));
     }
 
     public int GetScore()
@@ -38,4 +51,29 @@ public class ScoreManager : MonoBehaviour
     {
         //save score in playerprefs when said is made
     }
+    //add or subract score over time 
+    private IEnumerator IncreaseOverX(int x)
+    {
+        print(_score);
+        if (x > 0)
+        {
+            for (int i = 0; i < x; i++)
+            {
+                _score++;
+                yield return new WaitForSeconds(animationSpeed);
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i > x; i--)
+            {
+                _score--;
+                yield return new WaitForSeconds(animationSpeed);
+            }
+        }
+        print(_score + " score end");
+    }
+
+    
 }
