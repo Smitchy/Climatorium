@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void ManageScore(int point)
+    private void ManageScore(int point)
     {
         increaseScore = StartCoroutine(IncreaseOverX(point));
     }
