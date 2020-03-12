@@ -10,10 +10,15 @@ public class IntEvent : UnityEvent<int>
 }
 public class ScoreManager : MonoBehaviour
 {
+
     private IntEvent ScoreEvent;
     private int _score;
     public Coroutine increaseScore;
+    [Tooltip("Unity doesn't have class tooltips")]
+    public string howToTest = "Press space";
+    [Tooltip("Amount of points, positive or negative - int")]
     public int points;
+    [Tooltip("Speed between increase in points")]
     public float animationSpeed;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +42,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void ManageScore(int point)
+    public void ManageScore(int point)
     {
         increaseScore = StartCoroutine(IncreaseOverX(point));
     }
