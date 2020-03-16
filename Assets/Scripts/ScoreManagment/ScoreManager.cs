@@ -14,8 +14,10 @@ public class ScoreManager : MonoBehaviour
     private IntEvent ScoreEvent;
     private int _score;
     public Coroutine increaseScore;
+    private List<int> scores;
     [Tooltip("Unity doesn't have class tooltips")]
     public string howToTest = "Press space";
+    //for testing
     [Tooltip("Amount of points, positive or negative - int")]
     public int points;
     [Tooltip("Speed between increase in points")]
@@ -32,15 +34,19 @@ public class ScoreManager : MonoBehaviour
         ScoreEvent.AddListener(ManageScore);
 
         animationSpeed = 1;
+        scores = new List<int>();
     }
 
     private void Update()
     {
+
+        //for testing
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ScoreEvent.Invoke(points);
         }
     }
+
 
     private void ManageScore(int point)
     {
@@ -50,6 +56,22 @@ public class ScoreManager : MonoBehaviour
     public int GetScore()
     {
         return _score;
+    }
+
+    public List<int> GetScores()
+    {
+        return scores;
+    }
+
+
+    public void ResetScore()
+    {
+        scores.Add(_score);
+        _score = 0;
+    }
+    public void ResetScores()
+    {
+        scores = new List<int>();
     }
 
     public void SaveScore()
