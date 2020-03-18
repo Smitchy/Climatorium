@@ -6,6 +6,7 @@ public class CarMovement : MonoBehaviour
 {
     private GameObject grabbedBy;
     private Vector3 previousFramePosition;
+    public float movementFactor;
 
     void Update()
     {
@@ -35,7 +36,8 @@ public class CarMovement : MonoBehaviour
                 if (CheckHorizontalMovement(true))
                 {
                     Debug.Log("Positive Horizontal");
-                    Vector3 updatedX = new Vector3(gameObject.transform.position.x - (previousFramePosition.x - position.x), gameObject.transform.position.y, gameObject.transform.position.z);
+                    //Move("x");
+                    Vector3 updatedX = new Vector3(gameObject.transform.position.x - movementFactor, gameObject.transform.position.y, gameObject.transform.position.z);
                     gameObject.transform.position = updatedX;
                 }
             }
@@ -44,7 +46,8 @@ public class CarMovement : MonoBehaviour
                 if (CheckHorizontalMovement(false))
                 {
                     Debug.Log("Negative Horizontal");
-                    Vector3 updatedX = new Vector3(gameObject.transform.position.x - (previousFramePosition.x - position.x), gameObject.transform.position.y, gameObject.transform.position.z);
+                    //Move("x");
+                    Vector3 updatedX = new Vector3(gameObject.transform.position.x + movementFactor, gameObject.transform.position.y, gameObject.transform.position.z);
                     gameObject.transform.position = updatedX;
                 }
             }
@@ -56,7 +59,8 @@ public class CarMovement : MonoBehaviour
                 if (CheckVerticalMovement(true))
                 {
                     Debug.Log("Positive Vertical");
-                    Vector3 updatedZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - (previousFramePosition.z - position.z));
+                    //Move("z");
+                    Vector3 updatedZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - movementFactor);
                     gameObject.transform.position = updatedZ;
                 }
             }
@@ -65,7 +69,8 @@ public class CarMovement : MonoBehaviour
                 if (CheckVerticalMovement(false))
                 {
                     Debug.Log("Negative Vertical");
-                    Vector3 updatedZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - (previousFramePosition.x - position.z));
+                    //Move("z");
+                    Vector3 updatedZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + movementFactor);
                     gameObject.transform.position = updatedZ;
                 }
             }
@@ -76,7 +81,7 @@ public class CarMovement : MonoBehaviour
     {
         Vector3 direction = forward ? gameObject.transform.forward : -gameObject.transform.forward;
         RaycastHit hit;
-        if(Physics.Raycast(new Ray(gameObject.transform.position, direction), out hit, 0.55f))
+        if(Physics.Raycast(new Ray(gameObject.transform.position, direction), out hit, 0.4f))
         {
             if(hit.collider.tag == "Maze")
             {
@@ -93,7 +98,7 @@ public class CarMovement : MonoBehaviour
     {
         Vector3 direction = up ? -gameObject.transform.right : gameObject.transform.right;
         RaycastHit hit;
-        if (Physics.Raycast(new Ray(gameObject.transform.position, direction), out hit, 0.45f))
+        if (Physics.Raycast(new Ray(gameObject.transform.position, direction), out hit, 0.4f))
         {
             if (hit.collider.tag == "Maze")
             {
@@ -105,5 +110,19 @@ public class CarMovement : MonoBehaviour
             }
         }
         return false;
+    }
+    private void Move(string axis)
+    {
+        if(axis == "x")
+        {
+            Vector3 updatedX = new Vector3(grabbedBy.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+            gameObject.transform.position = updatedX;
+        }
+        if(axis == "z")
+        {
+            Vector3 updatedZ = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, grabbedBy.transform.position.z);
+            gameObject.transform.position = updatedZ;
+        }
+        
     }
 }
