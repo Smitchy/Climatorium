@@ -30,6 +30,11 @@ public class WrenchPuzzle : iPuzzle
         }
     }
 
+    private void Start() 
+    {
+        SetUp();   
+    }
+
     public override void SetUp()
     {
          if(ResetWrenchEvent == null)
