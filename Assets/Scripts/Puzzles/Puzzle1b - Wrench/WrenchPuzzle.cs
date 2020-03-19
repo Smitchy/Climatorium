@@ -95,6 +95,7 @@ public class WrenchPuzzle1 : iPuzzle
 
     void Update()
     {
+        //for testing
         if(Input.GetKeyDown(KeyCode.B))
         {
            
@@ -118,6 +119,7 @@ public class WrenchPuzzle1 : iPuzzle
 
     }
 
+    //trigger to see if the player moved the wrench outside of the bounds
     private void OnTriggerExit(Collider other) 
     {
         if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
