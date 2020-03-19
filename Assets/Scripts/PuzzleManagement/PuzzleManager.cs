@@ -7,8 +7,16 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField]
     private List<iPuzzle> puzzles;
     public iPuzzle currentPuzzle { get; private set; }
+    [SerializeField]
+    private bool testMode;
 
-
+    private void Update()
+    {
+        if (testMode && Input.GetKeyDown(KeyCode.N))
+        {
+            NextPuzzle();
+        }
+    }
     private void Awake()
     {
         currentPuzzle = null;
@@ -19,7 +27,7 @@ public class PuzzleManager : MonoBehaviour
         int p = puzzles.IndexOf(currentPuzzle);
         if (currentPuzzle != null)
         {
-            if(p < puzzles.Capacity-1)
+            if (p < puzzles.Capacity - 1)
             {
                 currentPuzzle.TearDown();
                 currentPuzzle = puzzles[p + 1];
@@ -34,17 +42,24 @@ public class PuzzleManager : MonoBehaviour
         }
         else
         {
-            if(puzzles.Capacity > 0)
+            if (puzzles.Capacity > 0)
             {
-                currentPuzzle = puzzles[0];
-                currentPuzzle.SetUp();
+                for (int i = 0; i < puzzles.Capacity; i++)
+                {
+                    if (puzzles[i] != null)
+                    {
+                        Debug.Log("Setting up puzzle: " + puzzles[i].gameObject.name);
+                        currentPuzzle = puzzles[i];
+                        currentPuzzle.SetUp();
+                    }
+                }
             }
         }
     }
 
     public void NextPuzzle(iPuzzle puzzle)
     {
-        if(currentPuzzle != null)
+        if (currentPuzzle != null)
         {
             currentPuzzle.TearDown();
         }

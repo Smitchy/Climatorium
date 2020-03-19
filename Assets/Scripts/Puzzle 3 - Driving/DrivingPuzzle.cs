@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Example of a puzzle implementation
-public class Puzzle1 : iPuzzle
+public class DrivingPuzzle : iPuzzle
 {
     public override float example => throw new System.NotImplementedException();
 
     public override void SetUp()
     {
-        Debug.Log("Puzzle 1 set up");
+        gameObject.SetActive(true);
     }
 
     public override void TearDown()
     {
-        Debug.Log("Puzzle 1 tear down");
+        gameObject.GetComponentInChildren<ResetBall>().ResetGO();
+        gameObject.SetActive(false);
     }
 }
