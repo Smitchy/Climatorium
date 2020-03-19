@@ -8,6 +8,28 @@ public class WrenchPuzzle : iPuzzle
 
     private UnityEvent ResetWrenchEvent;
     private Vector3 startPos;
+
+    //Example of overriden attributes (abstract, NOT optional)
+    public override float example
+    {
+        get
+        {
+            return 0;
+        }
+    }
+    //Example of overriden attributes (virtual, optional
+    public override float exampleTwo
+    {
+        get
+        {
+            return 0;
+        }
+        set
+        {
+
+        }
+    }
+
     public override void SetUp()
     {
          if(ResetWrenchEvent == null)
@@ -139,7 +161,7 @@ public class WrenchPuzzle : iPuzzle
 }
 
 
-public class WrenchPuzzle1 : iPuzzle
+/*public class WrenchPuzzle1 : iPuzzle
 {
     
-}
+}*/
