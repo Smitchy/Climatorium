@@ -5,9 +5,11 @@ using UnityEngine;
 public abstract class iPuzzle : MonoBehaviour
 {
     //An example of abstract attributes. This attribute MUST be given implementation.
+    //Good if you don't want default implementation, but need the child to implement it.
     public abstract float example { get; }
 
     //An example of virtual attributes. Optional implementation, if not overriden this will be used.
+    //Only useful if you want default implementation with the option to override.
     public virtual float exampleTwo
     {
         get
