@@ -7,7 +7,10 @@ public class WrenchPuzzle : iPuzzle
 {
 
     private UnityEvent ResetWrenchEvent;
-    private Vector3 startPos;
+    [HideInInspector]
+    public Vector3 startPos { get; set; }
+
+    public List <bool> checkpoints;
 
     //Example of overriden attributes (abstract, NOT optional)
     public override float example
@@ -55,15 +58,15 @@ public class WrenchPuzzle : iPuzzle
     void Update()
     {
         //for testing
-        if(Input.GetKeyDown(KeyCode.B))
-        {
+        // if(Input.GetKeyDown(KeyCode.B))
+        // {
            
-            for(int i = 0 ; i < 40; i++)
-            {
-                transform.Translate(Vector3.left * Time.deltaTime);
+        //     for(int i = 0 ; i < 40; i++)
+        //     {
+        //         transform.Translate(Vector3.left * Time.deltaTime);
 
-            }
-        }
+        //     }
+        // }
     }
 
     //reset the position of the wrench
