@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using VRTK.Prefabs.Interactions.Interactors;
+using TMPro;
 
 public class WrenchPuzzle : iPuzzle
 {
@@ -9,11 +11,15 @@ public class WrenchPuzzle : iPuzzle
     private UnityEvent ResetWrenchEvent;
     [HideInInspector]
     public Vector3 startPos { get; set; }
-    public Timer timer;
     private Collider start,end;
-    private bool triggeredStart;
-    public GameObject startGo, endGo;
-    public Material green,red;
+    private bool triggeredStart, won;
+    public GameObject startGo, endGo, wrenchShaft;
+    public Material green,red,blue;
+    public InteractorFacade interactorScriptLeft, interactorScriptRight;
+    public Timer time;
+
+    public TMP_Text testTxt;
+    
 
 
     //Example of overriden attributes (abstract, NOT optional)
@@ -50,6 +56,7 @@ public class WrenchPuzzle : iPuzzle
         }
         ResetWrenchEvent.AddListener(ResetWrench);
         ResetWrenchEvent.AddListener(HapticFeedBack);
+        ResetWrenchEvent.AddListener(LetGoOfStuff);
 
         startPos = transform.position;
     }
@@ -77,7 +84,10 @@ public class WrenchPuzzle : iPuzzle
     //reset the position of the wrench
     void ResetWrench()
     {
-        transform.position = startPos;
+        wrenchShaft.transform.position = startPos;
+        triggeredStart = false;
+        startGo.GetComponent<Renderer>().material = red;
+
     }
 
     //Vibrate the controller when failed - should probably be somewhere else
@@ -89,27 +99,42 @@ public class WrenchPuzzle : iPuzzle
     //trigger to see if the player moved the wrench outside of the bounds
     private void OnTriggerExit(Collider other) 
     {
-        if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
+        //if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
+        if (!won && other.name == "Rail")
         {
             print("test");
             TriggerEvent();
+            time.stopTimer.Invoke();
             // timer.stopTimer.Invoke();
         }
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(!triggeredStart && other.name == "StartSphere")
+        
+        if (!triggeredStart && other.name == startGo.name)
         {
             triggeredStart = true;
-            startGo.GetComponent<Renderer>().material = green; 
-
+            startGo.GetComponent<Renderer>().material = green;
         }
-        if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
+        //start timer if start has been triggered and colliding with the course
+        if(triggeredStart && other.name == "Rail")
         {
-            
-            print("enter");
+            time.startTimer.Invoke();
+            //testTxt.text = "should startTime";
         }
+        if (other.name == endGo.name)
+        {
+            won = true;
+            time.win.Invoke();
+           
+        }
+    }
+
+    void LetGoOfStuff()
+    {
+        interactorScriptLeft.Ungrab();
+        interactorScriptRight.Ungrab();
     }
 
     public void TriggerEvent()

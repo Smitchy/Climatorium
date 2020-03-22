@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
-
 public class Timer : MonoBehaviour
 {
     public ScoreManager score;
     [HideInInspector]
-    public UnityEvent startTimer, stopTimer;
+    public UnityEvent startTimer, stopTimer, win;
     private bool running;
     private Coroutine _TimeRoutine;
     private int timePassed;
+    public TMP_Text timerTxt;
     
     
     // Start is called before the first frame update
@@ -30,7 +30,13 @@ public class Timer : MonoBehaviour
         {
             stopTimer = new UnityEvent();
         }
-        stopTimer.AddListener(GenerateScore);
+        stopTimer.AddListener(FailedAttempt);
+        if(win == null)
+        {
+            win = new UnityEvent();
+        }
+        win.AddListener(GenerateScore);
+        timerTxt.text = timePassed + "";
     }
 
 
@@ -63,17 +69,28 @@ public class Timer : MonoBehaviour
         while(true)
         {
             timePassed--;
+            timerTxt.text = timePassed + "";
             yield return new WaitForSeconds(1);
             print(timePassed + " time");
         }
     }
     
+    void FailedAttempt()
+    {
+        StopTime();
+        running = !running;
+    }
 
     void GenerateScore()
-    {  
-        StopCoroutine(_TimeRoutine);
+    {
+        StopTime();
         running = !running;
         score.ManageScore(timePassed);
 
+    }
+
+    void StopTime()
+    {
+        StopCoroutine(_TimeRoutine);
     }
 }
