@@ -9,8 +9,12 @@ public class WrenchPuzzle : iPuzzle
     private UnityEvent ResetWrenchEvent;
     [HideInInspector]
     public Vector3 startPos { get; set; }
+    public Timer timer;
+    private Collider start,end;
+    private bool triggeredStart;
+    public GameObject startGo, endGo;
+    public Material green,red;
 
-    public List <bool> checkpoints;
 
     //Example of overriden attributes (abstract, NOT optional)
     public override float example
@@ -52,6 +56,7 @@ public class WrenchPuzzle : iPuzzle
 
     public override void TearDown()
     {
+        //remove game defining collders - start/end and obstacle course
         throw new System.NotImplementedException("no teardown defined");
     }
 
@@ -88,13 +93,21 @@ public class WrenchPuzzle : iPuzzle
         {
             print("test");
             TriggerEvent();
+            // timer.stopTimer.Invoke();
         }
     }
 
     private void OnTriggerEnter(Collider other) 
     {
+        if(!triggeredStart && other.name == "StartSphere")
+        {
+            triggeredStart = true;
+            startGo.GetComponent<Renderer>().material = green; 
+
+        }
         if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
         {
+            
             print("enter");
         }
     }

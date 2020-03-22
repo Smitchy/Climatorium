@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
+
 
 public class Timer : MonoBehaviour
 {
     public ScoreManager score;
-    private UnityEvent startTimer, stopTimer;
+    [HideInInspector]
+    public UnityEvent startTimer, stopTimer;
     private bool running;
     private Coroutine _TimeRoutine;
     private int timePassed;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +67,7 @@ public class Timer : MonoBehaviour
             print(timePassed + " time");
         }
     }
+    
 
     void GenerateScore()
     {  
