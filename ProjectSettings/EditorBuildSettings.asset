@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Scenes/Rune Scene.unity
     guid: eebd4bbf9ea5e9c49b52c64fc8786e5a
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Lukas Scene.unity
+    guid: 035666b34ce51444fa0385c0f7e8dcc2
   m_configObjects: {}
