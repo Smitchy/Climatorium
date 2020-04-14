@@ -19,10 +19,12 @@ public class CarMovement : MonoBehaviour
     public void Grabbed(GameObject go)
     {
         grabbedBy = go;
+        Debug.Log("Grabbed: " + gameObject.name);
     }
     public void Released()
     {
         grabbedBy = null;
+        Debug.Log("Released: " + gameObject.name);
     }
     //TODO checks for movement relating to maze.
     //Potential grid based movement
