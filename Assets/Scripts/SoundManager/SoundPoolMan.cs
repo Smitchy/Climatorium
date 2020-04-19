@@ -16,6 +16,8 @@ public class SoundPoolMan : MonoBehaviour
 
     public AudioClip clip;
     bool started;
+
+   
     private void Update()
     {
         if (Time.time > 0.5f && !started)
@@ -25,6 +27,7 @@ public class SoundPoolMan : MonoBehaviour
         }
         
     }
+   
     //get index of an object from the pool
     private int TakeFromObjectPool()
     {
