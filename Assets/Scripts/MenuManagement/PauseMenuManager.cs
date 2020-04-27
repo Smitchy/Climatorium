@@ -9,7 +9,10 @@ public class PauseMenuManager : MonoBehaviour
 
     public void ToggleMenu()
     {
-
+        if (activated)
+            DeactivatePause();
+        else
+            ActivatePause();
     }
     public void ActivatePause()
     {
