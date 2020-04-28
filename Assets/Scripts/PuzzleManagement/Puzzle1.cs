@@ -5,7 +5,6 @@ using UnityEngine;
 //Example of a puzzle implementation
 public class Puzzle1 : iPuzzle
 {
-    public override float example => throw new System.NotImplementedException();
 
     public override void SetUp()
     {

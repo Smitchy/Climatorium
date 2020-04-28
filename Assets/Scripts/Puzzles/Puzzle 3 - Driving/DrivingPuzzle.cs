@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class DrivingPuzzle : iPuzzle
 {
-    public override float example => throw new System.NotImplementedException();
-
     public override void SetUp()
     {
         gameObject.SetActive(true);
     }
-
     public override void TearDown()
     {
         gameObject.GetComponentInChildren<ResetBall>().ResetGO();

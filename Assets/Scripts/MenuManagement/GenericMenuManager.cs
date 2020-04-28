@@ -16,7 +16,6 @@ public class GenericMenuManager : MonoBehaviour
     {
         startingMask = VRCamera.cullingMask;
     }
-
     public void ActivateMenu(StateEnum menu)
     {
         if (!activated)
