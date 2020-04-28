@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zinnia.Action;
 
 public class GenericMenuManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GenericMenuManager : MonoBehaviour
     public Camera VRCamera;
     public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options;
     private GameObject currentMenu;
+    private BooleanAction boolAction;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class GenericMenuManager : MonoBehaviour
         {
             ShowUIOnly();
             Time.timeScale = 0;
+            boolAction.Receive(true);
             switch (menu)
             {
                 case StateEnum.MainMenu:
@@ -58,6 +61,7 @@ public class GenericMenuManager : MonoBehaviour
     {
         if (activated && currentMenu != null)
         {
+            boolAction.Receive(true);
             currentMenu.SetActive(false);
             currentMenu = null;
             ShowEverything();
@@ -67,7 +71,6 @@ public class GenericMenuManager : MonoBehaviour
             activated = false;
         }
     }
-
     private void ShowUIOnly()
     {
         VRCamera.cullingMask |= 1 << LayerMask.NameToLayer("UI");
