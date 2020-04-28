@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public Canvas pauseMenu;
     private bool activated;
 
     public void ToggleMenu()
@@ -19,7 +18,7 @@ public class PauseMenuManager : MonoBehaviour
         if (!activated)
         {
             /*Time.timeScale = 0;*/
-            pauseMenu.gameObject.SetActive(true);
+            gameObject.SetActive(true);
             CurrentState.SetStateStart(StateEnum.PauseMenu);
             Debug.Log("Activating pause");
             activated = true;
@@ -31,7 +30,7 @@ public class PauseMenuManager : MonoBehaviour
         if (activated)
         {
             /*Time.timeScale = 1;*/
-            pauseMenu.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             CurrentState.SetStateEnd();
             Debug.Log("Deactivating pause");
             activated = false;
