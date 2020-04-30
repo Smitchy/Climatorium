@@ -26,7 +26,7 @@ public class ScriptableObjectManager : MonoBehaviour
      
     }
 
-
+    //changes the gameobjects name to the real element
     public void CorrectAnswer()
     {
         gameObject.name = secretName;
