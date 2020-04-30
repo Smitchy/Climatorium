@@ -13,6 +13,10 @@ public class MenuManager : MonoBehaviour
         previousUserPresence = XRDevice.userPresence;
         gMM = GetComponent<GenericMenuManager>();
     }
+    private void Start()
+    {
+        StartCoroutine(SpawnFirstMenu());
+    }
 
     public void DisplayMenu(StateEnum state)
     {
@@ -31,5 +35,10 @@ public class MenuManager : MonoBehaviour
             }
             previousUserPresence = XRDevice.userPresence;
         }
+    }
+    private IEnumerator SpawnFirstMenu()
+    {
+        yield return new WaitForSeconds(1f);
+        DisplayMenu(StateEnum.MainMenu);
     }
 }

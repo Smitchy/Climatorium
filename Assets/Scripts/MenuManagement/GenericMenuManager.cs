@@ -8,21 +8,27 @@ public class GenericMenuManager : MonoBehaviour
     private bool activated;
     private int startingMask;
     public Camera VRCamera;
-    public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options;
+    public GameObject headsetAlias;
+    public float menuOffset;
+    public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, MainCanvas;
     private GameObject currentMenu;
     private BooleanAction boolAction;
+    private bool localBoolAction;
 
     private void Awake()
     {
         startingMask = VRCamera.cullingMask;
+        boolAction = GetComponent<BooleanAction>();
     }
     public void ActivateMenu(StateEnum menu)
     {
         if (!activated)
         {
+            MainCanvas.transform.position = headsetAlias.transform.position + headsetAlias.transform.forward * menuOffset;
             ShowUIOnly();
-            Time.timeScale = 0;
             boolAction.Receive(true);
+            Time.timeScale = 0;
+            Debug.Log("Activating menu");
             switch (menu)
             {
                 case StateEnum.MainMenu:
@@ -51,7 +57,7 @@ public class GenericMenuManager : MonoBehaviour
                     currentMenu = Options;
                     CurrentState.SetStateStart(StateEnum.OptionsMenu);
                     break;
-            }            
+            }
             Debug.Log("Activating " + menu);
             activated = true;
         }
@@ -60,7 +66,6 @@ public class GenericMenuManager : MonoBehaviour
     {
         if (activated && currentMenu != null)
         {
-            boolAction.Receive(true);
             currentMenu.SetActive(false);
             currentMenu = null;
             ShowEverything();
@@ -72,7 +77,7 @@ public class GenericMenuManager : MonoBehaviour
     }
     private void ShowUIOnly()
     {
-        VRCamera.cullingMask |= 1 << LayerMask.NameToLayer("UI");
+        VRCamera.cullingMask |= 1 << LayerMask.NameToLayer("NewUI");
         Debug.Log("Showing UI");
     }
     private void ShowEverything()
