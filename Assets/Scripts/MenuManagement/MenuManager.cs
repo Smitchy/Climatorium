@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(SpawnFirstMenu());
+        //StartCoroutine(SpawnFirstMenu());
     }
 
     public void DisplayMenu(StateEnum state)

@@ -14,22 +14,31 @@ public class CallButtonActions : MonoBehaviour
     }
     public void CallButtonAction(EventData eventData)
     {
-        Button button = eventData.CollisionData.collider.gameObject.GetComponent<Button>();
-        if (button)
+        if (CurrentState.currentState != StateEnum.PuzzleInProgress)
         {
-            button.onClick.Invoke();
+            Button button = eventData.CollisionData.collider.gameObject.GetComponent<Button>();
+            if (button)
+            {
+                button.onClick.Invoke();
+            }
         }
     }
     public void CallHoverActionEnter(EventData eventData)
     {
-        Button button = eventData.CollisionData.collider.gameObject.GetComponent<Button>();
-        if (button)
+        if (CurrentState.currentState != StateEnum.PuzzleInProgress)
         {
-            eventSystem.SetSelectedGameObject(button.gameObject);
+            Button button = eventData.CollisionData.collider.gameObject.GetComponent<Button>();
+            if (button)
+            {
+                eventSystem.SetSelectedGameObject(button.gameObject);
+            }
         }
     }
     public void CallHoverActionExit(EventData eventData)
     {
-        eventSystem.SetSelectedGameObject(null);
+        if (CurrentState.currentState != StateEnum.PuzzleInProgress)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
     }
 }
