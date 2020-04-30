@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum StateEnum 
 {
-    MainMenu, PauseMenu, PlayerChange, PuzzleInProgress, EndGame
+    MainMenu, PauseMenu, PlayerChange, PuzzleInProgress, EndGame, OptionsMenu
 }

@@ -17,32 +17,6 @@ public class WrenchPuzzle : iPuzzle
     public InteractorFacade interactorScriptLeft, interactorScriptRight;
     public Timer time;
 
-
-
-
-
-
-    //Example of overriden attributes (abstract, NOT optional)
-    public override float example
-    {
-        get
-        {
-            return 0;
-        }
-    }
-    //Example of overriden attributes (virtual, optional
-    public override float exampleTwo
-    {
-        get
-        {
-            return 0;
-        }
-        set
-        {
-
-        }
-    }
-
     private void Start()
     {
         SetUp();

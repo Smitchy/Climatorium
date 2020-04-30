@@ -5,35 +5,22 @@ using UnityEngine.XR;
 
 public class MenuManager : MonoBehaviour
 {
-    public MainMenu MMM;
-    public PauseMenuManager PMM;
-    public PlayerChangeManager PCM;
-    public EndGameManager EGM;
-
+    private GenericMenuManager gMM;
     private UserPresenceState previousUserPresence;
 
     private void Awake()
     {
         previousUserPresence = XRDevice.userPresence;
+        gMM = GetComponent<GenericMenuManager>();
+    }
+    private void Start()
+    {
+        StartCoroutine(SpawnFirstMenu());
     }
 
     public void DisplayMenu(StateEnum state)
     {
-        switch (state)
-        {
-            case StateEnum.MainMenu:
-                ToggleMainMenu();
-                break;
-            case StateEnum.PauseMenu:
-                TogglePauseMenu();
-                break;
-            case StateEnum.PlayerChange:
-                TogglePlayerChange();
-                break;
-            case StateEnum.EndGame:
-                ToggleEndGameMenu();
-                break;
-        }
+        gMM.ActivateMenu(state);
     }
     private void Update()
     {
@@ -41,27 +28,17 @@ public class MenuManager : MonoBehaviour
         {
             if (XRDevice.userPresence == UserPresenceState.NotPresent)
             {
-                PMM.ActivatePause();
+                if (CurrentState.currentState == StateEnum.PuzzleInProgress)
+                {
+                    DisplayMenu(StateEnum.PauseMenu);
+                }
             }
             previousUserPresence = XRDevice.userPresence;
         }
     }
-
-    private void ToggleMainMenu()
+    private IEnumerator SpawnFirstMenu()
     {
-
+        yield return new WaitForSeconds(1f);
+        DisplayMenu(StateEnum.MainMenu);
     }
-    private void TogglePlayerChange()
-    {
-
-    }
-    private void TogglePauseMenu()
-    {
-        PMM.ToggleMenu();
-    }
-    private void ToggleEndGameMenu()
-    {
-
-    }
-
 }
