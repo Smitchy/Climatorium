@@ -13,7 +13,6 @@ public class GenericMenuManager : MonoBehaviour
     public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, MainCanvas;
     private GameObject currentMenu;
     private BooleanAction boolAction;
-    private bool localBoolAction;
 
     private void Awake()
     {
@@ -28,7 +27,6 @@ public class GenericMenuManager : MonoBehaviour
             ShowUIOnly();
             boolAction.Receive(true);
             Time.timeScale = 0;
-            Debug.Log("Activating menu");
             switch (menu)
             {
                 case StateEnum.MainMenu:
@@ -51,16 +49,21 @@ public class GenericMenuManager : MonoBehaviour
                     currentMenu = EndGameMenu;
                     CurrentState.SetStateStart(StateEnum.EndGame);
                     break;
-                case StateEnum.OptionsMenu:
-                    currentMenu.SetActive(false);
-                    Options.SetActive(true);
-                    currentMenu = Options;
-                    CurrentState.SetStateStart(StateEnum.OptionsMenu);
+
+                case StateEnum.HiscoresMenu:
+                    //code here for hiscores menu
                     break;
             }
-            Debug.Log("Activating " + menu);
             activated = true;
         }
+        if (menu == StateEnum.OptionsMenu)
+        {
+            currentMenu.SetActive(false);
+            Options.SetActive(true);
+            currentMenu = Options;
+            CurrentState.SetStateStart(StateEnum.OptionsMenu);
+        }
+        Debug.Log("Activating " + menu);
     }
     public void DeactivateMenu()
     {
