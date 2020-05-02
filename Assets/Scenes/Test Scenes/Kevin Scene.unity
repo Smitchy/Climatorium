@@ -1069,7 +1069,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 526115263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480059819}
+        m_MethodName: HandleButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: Options/Back
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &526115263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,7 +1276,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 556410218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480059819}
+        m_MethodName: HandleButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main/Play
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &556410218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,6 +1607,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900097532860920325, guid: f197f996a249cae49be33e67509bb6cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f197f996a249cae49be33e67509bb6cb, type: 3}
@@ -2205,7 +2232,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 722712202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480059819}
+        m_MethodName: HandleButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: Main/Hiscores
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &722712202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2598,6 +2636,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f4896bac986a354682fc37891ce2e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &949842966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1259237475856138058, guid: d25610b7eb7a76d458587dc349327bf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1259237477149026441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949842964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895552d9252c7ef42a407ded30444c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &953984597
@@ -3494,7 +3544,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1428571894}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480059819}
+        m_MethodName: HandleButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Main/Options
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1428571894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3633,6 +3694,7 @@ GameObject:
   - component: {fileID: 1480059818}
   - component: {fileID: 1480059817}
   - component: {fileID: 1480059816}
+  - component: {fileID: 1480059819}
   m_Layer: 8
   m_Name: MenuUI
   m_TagString: Untagged
@@ -3724,6 +3786,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1480059819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480059814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9213fddaba3aa43449ca3971ec63dbd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleManager: {fileID: 342286407}
+  genericMenuManager: {fileID: 949842966}
 --- !u!1 &1518596065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,7 +4068,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1666195060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480059819}
+        m_MethodName: HandleButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: Main/Quit
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1666195060
 MonoBehaviour:
   m_ObjectHideFlags: 0
