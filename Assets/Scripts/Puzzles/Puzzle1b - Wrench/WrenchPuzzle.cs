@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using VRTK.Prefabs.Interactions.Interactors;
 
-
+/// <summary>
+/// Contains all methods for the wrench puzzle, extends iPuzzle
+/// </summary>
+/// <remarks>
+/// Class can setup the puzzle, tear it down, reset the puzzle object and check for trigger collisions relating to the puzzle
+/// </remarks>
 public class WrenchPuzzle : iPuzzle
 {
 
@@ -21,7 +26,12 @@ public class WrenchPuzzle : iPuzzle
     {
         SetUp();
     }
-
+    /// <summary>
+    /// iPuzzle structure
+    /// </summary>
+    /// <remarks>
+    /// sets up the wrench event and the startPosition of the puzzle object
+    /// </remarks>
     public override void SetUp()
     {
         if (ResetWrenchEvent == null)
@@ -34,27 +44,30 @@ public class WrenchPuzzle : iPuzzle
 
         startPos = transform.position;
     }
-
+    /// <summary>
+    /// iPuzzle structure
+    /// </summary>
     public override void TearDown()
     {
         //remove game defining collders - start/end and obstacle course
         throw new System.NotImplementedException("no teardown defined");
     }
 
-
-
-    //reset the position of the wrench
+    /// <summary>
+    /// reset the position of the wrench to start position using startposition set in setup
+    /// </summary>
     void ResetWrench()
     {
         wrenchShaft.transform.position = startPos;
         triggeredStart = false;
         startGo.GetComponent<Renderer>().material = red;
 
-
     }
 
-
-    //trigger to see if the player moved the wrench outside of the bounds
+    /// <summary>
+    /// trigger to see if the player moved the wrench outside of the bounds
+    /// </summary>
+    /// <param name="other">should always be the track of the puzzle</param>
     private void OnTriggerExit(Collider other)
     {
         //if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
@@ -66,6 +79,10 @@ public class WrenchPuzzle : iPuzzle
         }
     }
 
+    /// <summary>
+    /// Trigger to start the puzzle setting triggeredStart boolean to true 
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
 
@@ -87,13 +104,17 @@ public class WrenchPuzzle : iPuzzle
 
         }
     }
-
+    /// <summary>
+    ///private method that uses VRTK to let go of what ever is in the users hand
+    /// </summary>
     void LetGoOfStuff()
     {
         interactorScriptLeft.Ungrab();
         interactorScriptRight.Ungrab();
     }
-
+    /// <summary>
+    /// public method to trigger reset puzzle event
+    /// </summary>
     public void TriggerEvent()
     {
         ResetWrenchEvent.Invoke();

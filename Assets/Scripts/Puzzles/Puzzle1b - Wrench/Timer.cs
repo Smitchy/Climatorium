@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
-
+/// <summary>
+/// Contains all the methods to start a timer for a puzzle
+/// </summary>
+/// <remarks>
+/// this class can subscribe to an event controlling a timer, fire said event, stop the timer and generate a score based on remaining time
+/// </remarks>
 public class Timer : MonoBehaviour
 {
     public ScoreManager score;

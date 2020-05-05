@@ -51,7 +51,10 @@ public class ScoreManager : MonoBehaviour
         scoreTxt.text = _score + " ";
     }
 
-
+    /// <summary>
+    /// public available method to add/subtract points over time
+    /// </summary>
+    /// <param name="point"></param>
     public void ManageScore(int point)
     {
         if(!running)
@@ -60,33 +63,55 @@ public class ScoreManager : MonoBehaviour
             increaseScore = StartCoroutine(IncreaseOverX(point));
         }
     }
-
+    /// <summary>
+    /// gets the current score
+    /// </summary>
+    /// <returns>the current score</returns>
     public int GetScore()
     {
         return _score;
     }
-
+    /// <summary>
+    /// return highscores
+    /// </summary>
+    /// <returns></returns>
     public List<int> GetScores()
     {
         return scores;
     }
 
-
+    
+    /// <summary>
+    ///adds the current score to the overall scores then resets current score
+    /// </summary>
     public void ResetScore()
     {
         scores.Add(_score);
         _score = 0;
     }
+    //
+    /// <summary>
+    /// Resets all the scores - highscore wip
+    /// needs to hook up to persistence
+    /// </summary>
     public void ResetScores()
     {
         scores = new List<int>();
     }
 
+    /// <summary>
+    /// should add the current score to the player prefs
+    /// </summary>
     public void SaveScore()
     {
         //save score in playerprefs when said is made
     }
-    //add or subract score over time 
+    //
+    /// <summary>
+    /// coroutine to handle adding or subracting score over time by 
+    /// </summary>
+    /// <param name="x">in-/decrease x score</param>
+    /// <returns></returns>
     private IEnumerator IncreaseOverX(int x)
     {
         

@@ -27,8 +27,12 @@ public class SoundPoolMan : MonoBehaviour
         }
         
     }
-   
-    //get index of an object from the pool
+
+    
+    /// <summary>
+    /// get index of an object from the pool
+    /// </summary>
+    /// <returns></returns>
     private int TakeFromObjectPool()
     {
 
@@ -46,14 +50,26 @@ public class SoundPoolMan : MonoBehaviour
         return -1;
 
     }
-    //start the coroutine with a sound and a destination. Maybe add a boolean to decide if the sound should be looped could be called from and event
+
+    
+    /// <summary>
+    /// start the coroutine with a sound and a destination. Maybe add a boolean to decide if the sound should be looped could be called from and event
+    /// </summary>
+    /// <param name="sound"></param>
+    /// <param name="destination"></param>
     public void SetupSoundPlayer(AudioClip sound, Transform destination)
     {
         StartCoroutine(SoundPLayer(sound, destination));
         //pooledPlayer.SetActive(true);
     }
 
-    //sets up the player then plays given sound at a given location - set inactive/return to pool after clip length plus a millisecond 
+    /// <summary>
+    /// 
+    //sets up the player then plays given sound at a given location - set inactive/return to pool after clip length plus a millisecond
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="destination"></param>
+    /// <returns></returns>
     private IEnumerator SoundPLayer(AudioClip clip, Transform destination)
     {
         int index = TakeFromObjectPool();
@@ -66,7 +82,10 @@ public class SoundPoolMan : MonoBehaviour
         pooledAudioSourceContainers[index].SetActive(false);
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator playmore()
     {
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d6b69636f704c419b995f8e2de55ef, type: 3}
   m_Name: Uranium
   m_EditorClassIdentifier: 
-  materialTypeName: 0
+  materialTypeName: 92
   weightGrams: 0
   gramsPerUnit: 0
   density: 0
