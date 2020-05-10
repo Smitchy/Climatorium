@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CurrentState
 {
-    public static StateEnum currentState = StateEnum.PuzzleInProgress;
+    public static StateEnum currentState = StateEnum.MainMenu;
 
     private static StateEnum returnPoint;
 

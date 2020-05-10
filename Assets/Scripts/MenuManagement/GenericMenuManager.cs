@@ -5,86 +5,95 @@ using Zinnia.Action;
 
 public class GenericMenuManager : MonoBehaviour
 {
-    private bool activated;
     private int startingMask;
     public Camera VRCamera;
     public GameObject headsetAlias;
     public float menuOffset;
-    public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, MainCanvas;
+    public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, HiScores, MainCanvas;
     private GameObject currentMenu;
     private BooleanAction boolAction;
+    private GameObject[] canvasRefs;
+    [SerializeField]
+    private LayerMask menuLayer;
 
     private void Awake()
     {
         startingMask = VRCamera.cullingMask;
         boolAction = GetComponent<BooleanAction>();
+        MainCanvas.transform.position = headsetAlias.transform.position + headsetAlias.transform.forward * menuOffset;
+        canvasRefs = new GameObject[] { MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, HiScores };
     }
     public void ActivateMenu(StateEnum menu)
     {
-        if (!activated)
-        {
-            MainCanvas.transform.position = headsetAlias.transform.position + headsetAlias.transform.forward * menuOffset;
-            ShowUIOnly();
-            boolAction.Receive(true);
-            Time.timeScale = 0;
-            switch (menu)
-            {
-                case StateEnum.MainMenu:
-                    MainMenu.SetActive(true);
-                    currentMenu = MainMenu;
-                    CurrentState.SetStateStart(StateEnum.MainMenu);
-                    break;
-                case StateEnum.PauseMenu:
-                    PauseMenu.SetActive(true);
-                    currentMenu = PauseMenu;
-                    CurrentState.SetStateStart(StateEnum.PauseMenu);
-                    break;
-                case StateEnum.PlayerChange:
-                    PlayerChangeMenu.SetActive(true);
-                    currentMenu = PlayerChangeMenu;
-                    CurrentState.SetStateStart(StateEnum.PlayerChange);
-                    break;
-                case StateEnum.EndGame:
-                    EndGameMenu.SetActive(true);
-                    currentMenu = EndGameMenu;
-                    CurrentState.SetStateStart(StateEnum.EndGame);
-                    break;
 
-                case StateEnum.HiscoresMenu:
-                    //code here for hiscores menu
-                    break;
-            }
-            activated = true;
-        }
-        if (menu == StateEnum.OptionsMenu)
+        //MainCanvas.transform.position = headsetAlias.transform.position + headsetAlias.transform.forward * menuOffset;
+        ShowUIOnly();
+        boolAction.Receive(true);
+        DisableAllMenus();
+        switch (menu)
         {
-            currentMenu.SetActive(false);
-            Options.SetActive(true);
-            currentMenu = Options;
-            CurrentState.SetStateStart(StateEnum.OptionsMenu);
+            case StateEnum.MainMenu:
+                MainMenu.SetActive(true);
+                currentMenu = MainMenu;
+                CurrentState.SetStateStart(StateEnum.MainMenu);
+                break;
+            case StateEnum.PauseMenu:
+                PauseMenu.SetActive(true);
+                currentMenu = PauseMenu;
+                CurrentState.SetStateStart(StateEnum.PauseMenu);
+                break;
+            case StateEnum.OptionsMenu:
+                currentMenu.SetActive(false);
+                Options.SetActive(true);
+                currentMenu = Options;
+                CurrentState.SetStateStart(StateEnum.OptionsMenu);
+                break;
+            case StateEnum.PlayerChange:
+                PlayerChangeMenu.SetActive(true);
+                currentMenu = PlayerChangeMenu;
+                CurrentState.SetStateStart(StateEnum.PlayerChange);
+                break;
+            case StateEnum.EndGame:
+                EndGameMenu.SetActive(true);
+                currentMenu = EndGameMenu;
+                CurrentState.SetStateStart(StateEnum.EndGame);
+                break;
+
+            case StateEnum.HiscoresMenu:
+                HiScores.SetActive(true);
+                currentMenu = HiScores;
+                CurrentState.SetStateStart(StateEnum.HiscoresMenu);
+                break;
+
         }
         Debug.Log("Activating " + menu);
     }
     public void DeactivateMenu()
     {
-        if (activated && currentMenu != null)
+        if (currentMenu != null)
         {
             currentMenu.SetActive(false);
             currentMenu = null;
             ShowEverything();
             Time.timeScale = 1;
-            Debug.Log("Deactivating " + CurrentState.currentState);
             CurrentState.SetStateEnd();
-            activated = false;
         }
     }
     private void ShowUIOnly()
     {
-        VRCamera.cullingMask |= 1 << LayerMask.NameToLayer("NewUI");
+        VRCamera.cullingMask = menuLayer;
         Debug.Log("Showing UI");
+        Time.timeScale = 0;
     }
     private void ShowEverything()
     {
         VRCamera.cullingMask = startingMask;
+    }
+    private void DisableAllMenus()
+    {
+        foreach (GameObject go in canvasRefs)
+        {
+            go.SetActive(false);
+        }
     }
 }

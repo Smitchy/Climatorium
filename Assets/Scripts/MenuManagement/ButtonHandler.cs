@@ -8,7 +8,7 @@ public class ButtonHandler : MonoBehaviour
     public GenericMenuManager genericMenuManager;
     private enum CallingMenu { Main, Pause};
     private CallingMenu callingMenu;
-    public enum ButtonEnum { Main_Play, Main_Options, Main_Hiscores, Main_Quit, Options_Back }
+    public SoundPoolMan soundManager;
 
     public void HandleButton(string button)
     {
@@ -16,6 +16,7 @@ public class ButtonHandler : MonoBehaviour
         {
             case "Main/Play":
                 genericMenuManager.DeactivateMenu();
+                CurrentState.currentState = StateEnum.PuzzleInProgress;
                 puzzleManager.NextPuzzle();
                 break;
             case "Main/Options":
@@ -24,7 +25,6 @@ public class ButtonHandler : MonoBehaviour
                 break;
             case "Main/Hiscores":
                 genericMenuManager.ActivateMenu(StateEnum.HiscoresMenu);
-                callingMenu = CallingMenu.Main;
                 break;
             case "Main/Quit":
                 //quit logic
@@ -40,6 +40,23 @@ public class ButtonHandler : MonoBehaviour
                         break;
                 }
                 break;
+            case "Options/VolumeDown":
+                DecrementVolume();
+                break;
+            case "Options/VolumeUp":
+                IncrementVolume();
+                break;
+            case "HiScores/Back":
+                genericMenuManager.ActivateMenu(StateEnum.MainMenu);
+                break;
         }
+    }
+    private void IncrementVolume()
+    {
+        soundManager.IncreaseVolume();
+    }
+    private void DecrementVolume()
+    {
+        soundManager.DecreaseVolume();
     }
 }

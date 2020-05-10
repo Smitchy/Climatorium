@@ -16,16 +16,18 @@ public class SoundPoolMan : MonoBehaviour
 
     public AudioClip clip;
     bool started;
+    private float currentVolume = 100;
+    [SerializeField]
+    private VolumeText volText;
 
-   
+
     private void Update()
     {
         if (Time.time > 0.5f && !started)
         {
             started = true;
             StartCoroutine(playmore());
-        }
-        
+        }        
     }
 
     
@@ -97,6 +99,30 @@ public class SoundPoolMan : MonoBehaviour
 
             yield return new WaitForSeconds(1);
         }
+    }
+    public void IncreaseVolume()
+    {
+        if(currentVolume < 100)
+        {
+            currentVolume += 10;
+            foreach(GameObject aS in pooledAudioSourceContainers)
+            {
+                aS.GetComponent<AudioSource>().volume = currentVolume/100;
+            }
+        }
+        volText.UpdateText(currentVolume);
+    }
+    public void DecreaseVolume()
+    {
+        if (currentVolume > 0)
+        {
+            currentVolume -= 10;
+            foreach (GameObject aS in pooledAudioSourceContainers)
+            {
+                aS.GetComponent<AudioSource>().volume = currentVolume/100;
+            }
+        }
+        volText.UpdateText(currentVolume);
     }
 }
 
