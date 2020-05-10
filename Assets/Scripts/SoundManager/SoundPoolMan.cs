@@ -20,6 +20,8 @@ public class SoundPoolMan : MonoBehaviour
    
     private void Update()
     {
+
+        //test method to fire multiple sounds in succession
         if (Time.time > 0.5f && !started)
         {
             started = true;
@@ -32,7 +34,7 @@ public class SoundPoolMan : MonoBehaviour
     /// <summary>
     /// get index of an object from the pool
     /// </summary>
-    /// <returns></returns>
+    /// <returns>the chosen index from the sound pool</returns>
     private int TakeFromObjectPool()
     {
 
