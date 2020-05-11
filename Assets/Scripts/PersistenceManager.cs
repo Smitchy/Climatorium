@@ -5,42 +5,64 @@ public static class PersistenceManager
     private static int currentScore;
     private static int[] highScore;
     private static int[] highScoreNewValues;
-    private static readonly string scoreText = "Hiscore";
-    private static bool highscoreBeaten = false;
+    private static readonly string scoreText = "HighScore";
+    private static bool sortIt = false;
 
     public static void Initialize()
     {
         currentScore = 0;
-        highScore = GetHighScore();
         highScore = new int[5];
         highScoreNewValues = new int[6];
+        highScore = GetHighScore();
     }
 
     public static void SaveScore(int score)
     {
-        //Shift hiscore down and slot new hiscore in
         currentScore += score;
+
+        for (int i = 0; i < highScore.Length; i++)
+        {
+            if (currentScore > highScore[i])
+            {
+                for (int j = 0; j < highScore.Length; j++)
+                {
+                    highScoreNewValues[j] = highScore[j];
+                }
+                highScoreNewValues[5] = currentScore;
+                sortIt = true;
+                break;
+            }
+        }
+
+        if (sortIt)
+        {
+            SetScoreToPlayerPrefs(Sort(highScoreNewValues));
+            sortIt = false;
+        }
+        
+    }
+
+    private static int[] Sort(int[] highScoreNewValues)
+    {
+        for (int i = 0; i < highScoreNewValues.Length; i++)
+            {
+                for (int j = 0; j < highScoreNewValues.Length; j++)
+                {
+                    if (highScoreNewValues[j] < highScoreNewValues[i])
+                    {
+                        int temp = highScoreNewValues[i];
+                        highScoreNewValues[i] = highScoreNewValues[j];
+                        highScoreNewValues[j] = temp;
+                    }
+                }
+            }
+
         for (int i = 0; i < 5; i++)
         {
-            if (highScore[i] < currentScore)
-            {
-                highScore[highScore.Length] = 0;
-                highscoreBeaten = true;
-            }
-            if (highscoreBeaten)
-            {
-                highScoreNewValues[i + 1] = highScore[i];
-            }
-            else
-            {
-                highScoreNewValues[i] = highScore[i];
-            }
-        }
-        if (highscoreBeaten)
-        {
-            SetScoreToPlayerPrefs(highScoreNewValues);
-        }
-        highscoreBeaten = false;
+            highScore[i] = highScoreNewValues[i];
+        }    
+
+        return highScore;
     }
     private static void SetScoreToPlayerPrefs(int[] newValues)
     {
@@ -51,15 +73,11 @@ public static class PersistenceManager
     }
     public static int[] GetHighScore()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < highScore.Length; i++)
         {
-            highScore[i] = PlayerPrefs.GetInt(scoreText + i);
+            highScore[i] = PlayerPrefs.GetInt(scoreText + i, 0);
         }
-        return highScore;
-    }
 
-    private static void SetNewHighScore(int score)
-    {
-        PlayerPrefs.SetInt("HighScore", score);
+        return highScore;
     }
 }
