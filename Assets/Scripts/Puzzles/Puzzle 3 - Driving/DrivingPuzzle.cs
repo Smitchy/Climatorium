@@ -10,7 +10,7 @@ public class DrivingPuzzle : iPuzzle
     }
     public override void TearDown()
     {
-        gameObject.GetComponentInChildren<ResetBall>().ResetGO();
+        //gameObject.GetComponentInChildren<ResetBall>().ResetGO();
         gameObject.SetActive(false);
     }
 }

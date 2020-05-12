@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterpuzzleIPuzzle : iPuzzle
+public class WrenchIpuzzle : iPuzzle
 {
     public override void SetUp()
     {
@@ -13,5 +13,4 @@ public class WaterpuzzleIPuzzle : iPuzzle
     {
         gameObject.SetActive(false);
     }
-
 }

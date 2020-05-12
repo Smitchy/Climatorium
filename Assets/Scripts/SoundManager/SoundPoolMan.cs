@@ -25,11 +25,11 @@ public class SoundPoolMan : MonoBehaviour
     {
 
         //test method to fire multiple sounds in succession
-        if (Time.time > 0.5f && !started)
+        /*if (Time.time > 0.5f && !started)
         {
             started = true;
             StartCoroutine(playmore());
-        }        
+        }   */     
     }
 
     
