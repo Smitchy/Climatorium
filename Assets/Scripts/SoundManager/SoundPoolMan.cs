@@ -29,8 +29,8 @@ public class SoundPoolMan : MonoBehaviour
         {
             started = true;
             StartCoroutine(playmore());
-        }   */     
-    }
+        }       
+    }*/ 
     
     /// <summary>
     /// get index of an object from the pool
