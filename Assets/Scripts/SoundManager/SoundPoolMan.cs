@@ -21,8 +21,8 @@ public class SoundPoolMan : MonoBehaviour
     private VolumeText volText;
 
 
-    private void Update()
-    {
+    //private void Update()
+    //{
 
         //test method to fire multiple sounds in succession
         /*if (Time.time > 0.5f && !started)
@@ -31,7 +31,6 @@ public class SoundPoolMan : MonoBehaviour
             StartCoroutine(playmore());
         }   */     
     }
-
     
     /// <summary>
     /// get index of an object from the pool
@@ -54,17 +53,17 @@ public class SoundPoolMan : MonoBehaviour
         return -1;
 
     }
-
+   
     
     /// <summary>
     /// start the coroutine with a sound and a destination. Maybe add a boolean to decide if the sound should be looped could be called from and event
     /// </summary>
     /// <param name="sound"></param>
     /// <param name="destination"></param>
-    public void SetupSoundPlayer(AudioClip sound, Transform destination)
+    public void SetupSoundPlayer(AudioClip sound, GameObject destination, bool shouldFollow)
     {
-        StartCoroutine(SoundPLayer(sound, destination));
-        //pooledPlayer.SetActive(true);
+        
+        StartCoroutine(SoundPLayer(sound, destination, shouldFollow));
     }
 
     /// <summary>
@@ -74,12 +73,16 @@ public class SoundPoolMan : MonoBehaviour
     /// <param name="clip"></param>
     /// <param name="destination"></param>
     /// <returns></returns>
-    private IEnumerator SoundPLayer(AudioClip clip, Transform destination)
+    private IEnumerator SoundPLayer(AudioClip clip, GameObject destination, bool shouldFollow)
     {
         int index = TakeFromObjectPool();
 
         pooledAudioSourceContainers[index].SetActive(true);
-        pooledAudioSourceContainers[index].transform.position = destination.position;
+        pooledAudioSourceContainers[index].transform.position = destination.transform.position;
+        if (shouldFollow)
+        {
+            pooledAudioSourceContainers[index].transform.SetParent(destination.transform);
+        }
         pooledAudioSourceContainers[index].GetComponent<AudioSource>().PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length + 0.01f);
 
@@ -93,18 +96,18 @@ public class SoundPoolMan : MonoBehaviour
     /// 
     /// </summary>
     /// <returns></returns>
-    private IEnumerator playmore()
-    {
+    //private IEnumerator playmore()
+    //{
 
-        //foreach (GameObject location in locations)
-        for (int i = 0; i < testLocations.Count; i++)
-        {
+    //    //foreach (GameObject location in locations)
+    //    for (int i = 0; i < testLocations.Count; i++)
+    //    {
             
-            SetupSoundPlayer(clip, testLocations[i].transform);
+    //        SetupSoundPlayer(clip, testLocations[i].transform);
 
-            yield return new WaitForSeconds(1);
-        }
-    }
+    //        yield return new WaitForSeconds(1);
+    //    }
+    //}
     public void IncreaseVolume()
     {
         if(currentVolume < 100)

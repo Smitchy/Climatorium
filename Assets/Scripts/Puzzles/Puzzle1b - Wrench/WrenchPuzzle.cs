@@ -10,7 +10,7 @@ using VRTK.Prefabs.Interactions.Interactors;
 /// <remarks>
 /// Class can setup the puzzle, tear it down, reset the puzzle object and check for trigger collisions relating to the puzzle
 /// </remarks>
-public class WrenchPuzzle : iPuzzle
+public class WrenchPuzzle : MonoBehaviour
 {
 
     private UnityEvent ResetWrenchEvent;
@@ -24,16 +24,6 @@ public class WrenchPuzzle : iPuzzle
 
     private void Start()
     {
-        SetUp();
-    }
-    /// <summary>
-    /// iPuzzle structure
-    /// </summary>
-    /// <remarks>
-    /// sets up the wrench event and the startPosition of the puzzle object
-    /// </remarks>
-    public override void SetUp()
-    {
         if (ResetWrenchEvent == null)
         {
             ResetWrenchEvent = new UnityEvent();
@@ -44,14 +34,7 @@ public class WrenchPuzzle : iPuzzle
 
         startPos = transform.position;
     }
-    /// <summary>
-    /// iPuzzle structure
-    /// </summary>
-    public override void TearDown()
-    {
-        //remove game defining collders - start/end and obstacle course
-        throw new System.NotImplementedException("no teardown defined");
-    }
+   
 
     /// <summary>
     /// reset the position of the wrench to start position using startposition set in setup
