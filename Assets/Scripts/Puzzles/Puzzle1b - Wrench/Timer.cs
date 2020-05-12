@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     private bool running;
     private Coroutine _TimeRoutine;
     private int timePassed;
-    public TMP_Text timerTxt;
+    //public TMP_Text timerTxt;
     
     
     // Start is called before the first frame update
@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour
             win = new UnityEvent();
         }
         win.AddListener(GenerateScore);
-        timerTxt.text = timePassed + "";
+       // timerTxt.text = timePassed + "";
     }
 
 
@@ -74,7 +74,7 @@ public class Timer : MonoBehaviour
         while(true)
         {
             timePassed--;
-            timerTxt.text = timePassed + "";
+            //timerTxt.text = timePassed + "";
             yield return new WaitForSeconds(1);
             print(timePassed + " time");
         }
