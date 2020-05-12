@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class StartedPuzzle : UnityEvent<List<AudioClip>, List<AudioClip>, List<AudioClip>>
+{
+}
 public class SpeakController : MonoBehaviour
 {
     [SerializeField]
-    private List<AudioClip> speakQueue;
+    private List<AudioClip> speakQueue, _hints, _sarcasm;
     [SerializeField]
     private Transform player;
     [SerializeField]
@@ -16,23 +20,20 @@ public class SpeakController : MonoBehaviour
     private Coroutine _Speak;
     private float timeSinceEnable;
     private bool inactive;
-    public UnityEvent inactivity;
+    public StartedPuzzle startedPuzzle;
 
     public SoundPoolMan soundPool;
     private bool running;
 
     private void Start()
     {
-        if(inactivity == null)
+        if(startedPuzzle == null)
         {
-            inactivity = new UnityEvent();
+            startedPuzzle = new StartedPuzzle();
         }
-
+        startedPuzzle.AddListener(AddPuzzleRelatedSounds);
     }
-    private void OnEnable()
-    {
-        timeSinceEnable = Time.time;
-    }
+    
     public void AddToQueue(AudioClip clip)
     {
         speakQueue.Add(clip);
@@ -45,7 +46,7 @@ public class SpeakController : MonoBehaviour
     /// <summary>
     /// Coroutine that will repeat itself until there are no more 
     /// </summary>
-    /// <returns></returns>
+  
     private IEnumerator SpeakRoutine()
     {
         if(speakQueue.Count == 0)
@@ -66,6 +67,20 @@ public class SpeakController : MonoBehaviour
 
     }
 
+    
+    /// <summary>
+    /// sets the speaklists from event that should be fired at all puzzle start
+    /// </summary>
+    /// <param name="hintsTips"></param>
+    /// <param name="tips"></param>
+    /// <param name="sarcasm"></param>
+    private void AddPuzzleRelatedSounds(List<AudioClip> hintsTips, List<AudioClip> tips, List<AudioClip> sarcasm)
+    {
+        _hints = hintsTips;
+        _sarcasm = sarcasm;
+        timeSinceEnable = Time.time;
+    }
+
     /// <summary>
     /// Method to determine if the player needs a hint
     /// </summary>
@@ -76,7 +91,7 @@ public class SpeakController : MonoBehaviour
         bool playSpeak = false;
         //if (deltaInt % )
         //{
-
+            
         //}
 
         return playSpeak;

@@ -83,6 +83,9 @@ public class SoundPoolMan : MonoBehaviour
         pooledAudioSourceContainers[index].GetComponent<AudioSource>().PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length + 0.01f);
 
+        //in place in case the audiosource was parented for following a transform
+        pooledAudioSourceContainers[index].transform.SetParent(null);
+
         pooledAudioSourceContainers[index].SetActive(false);
     }
 
@@ -125,6 +128,11 @@ public class SoundPoolMan : MonoBehaviour
             }
         }
         volText.UpdateText(currentVolume);
+    }
+
+    public void FollowObject(AudioSource src, Transform target)
+    {
+        src.transform.SetParent(target);
     }
 }
 
