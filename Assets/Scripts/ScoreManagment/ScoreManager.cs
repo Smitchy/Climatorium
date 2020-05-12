@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
     private List<int> scores;
     private bool running;
 
-    public TMP_Text scoreTxt;
+    //public TMP_Text scoreTxt;
     
     //for testing
     [Tooltip("Amount of points, positive or negative - int")]
@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
         // {
         //     ScoreEvent.Invoke(points);
         // }
-        scoreTxt.text = _score + " ";
+        //scoreTxt.text = _score + " ";
     }
 
     /// <summary>
