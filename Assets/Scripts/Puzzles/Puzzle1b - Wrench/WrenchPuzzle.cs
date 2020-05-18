@@ -85,6 +85,7 @@ public class WrenchPuzzle : MonoBehaviour
         if (triggeredStart && other.tag == "Track")
         {
             time.startTimer.Invoke();
+            test2.text = "Started ";
             //testTxt.text = "should startTime";
         }
         if (other.name == endGo.name)
@@ -109,4 +110,6 @@ public class WrenchPuzzle : MonoBehaviour
     {
         ResetWrenchEvent.Invoke();
     }
+
+    
 }
