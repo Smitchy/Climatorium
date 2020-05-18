@@ -17,6 +17,7 @@ public class ButtonHandler : MonoBehaviour
             case "Main/Play":
                 genericMenuManager.DeactivateMenu();
                 CurrentState.currentState = StateEnum.PuzzleInProgress;
+                //Disable laser
                 puzzleManager.NextPuzzle();
                 break;
             case "Main/Options":

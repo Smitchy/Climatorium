@@ -14,7 +14,7 @@ public class CallButtonActions : MonoBehaviour
     }
     public void CallButtonAction(EventData eventData)
     {
-        if (CurrentState.currentState != StateEnum.PuzzleInProgress && eventData != null)
+        if (eventData != null)
         {
             Button button = eventData.CollisionData.collider.gameObject.GetComponent<Button>();
             if (button)

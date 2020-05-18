@@ -24,14 +24,13 @@ public class SoundPoolMan : MonoBehaviour
     //private void Update()
     //{
 
-    //    //test method to fire multiple sounds in succession
-    //    if (Time.time > 0.5f && !started)
-    //    {
-    //        started = true;
-    //        StartCoroutine(playmore());
-    //    }        
-    //}
-
+        //test method to fire multiple sounds in succession
+        /*if (Time.time > 0.5f && !started)
+        {
+            started = true;
+            StartCoroutine(playmore());
+        }       
+    }*/ 
     
     /// <summary>
     /// get index of an object from the pool

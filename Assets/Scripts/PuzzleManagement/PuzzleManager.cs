@@ -42,15 +42,16 @@ public class PuzzleManager : MonoBehaviour
         }
         else
         {
-            if (puzzles.Capacity > 0)
+            if (puzzles.Count > 0)
             {
-                for (int i = 0; i < puzzles.Capacity; i++)
+                for (int i = 0; i < puzzles.Count; i++)
                 {
                     if (puzzles[i] != null)
                     {
                         Debug.Log("Setting up puzzle: " + puzzles[i].gameObject.name);
                         currentPuzzle = puzzles[i];
                         currentPuzzle.SetUp();
+                        return;
                     }
                 }
             }
