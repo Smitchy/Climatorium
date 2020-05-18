@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using VRTK.Prefabs.Interactions.Interactors;
+using TMPro;
 
 /// <summary>
 /// Contains all methods for the wrench puzzle, extends iPuzzle
@@ -21,6 +22,8 @@ public class WrenchPuzzle : MonoBehaviour
     public Material green, red, blue;
     public InteractorFacade interactorScriptLeft, interactorScriptRight;
     public Timer time;
+
+    public TMP_Text test1, test2;
 
     private void Start()
     {
@@ -53,8 +56,10 @@ public class WrenchPuzzle : MonoBehaviour
     /// <param name="other">should always be the track of the puzzle</param>
     private void OnTriggerExit(Collider other)
     {
+        test1.text = "";
+        test2.text = "exited " + other.name;
         //if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
-        if (!won && other.name == "Rail")
+        if (!won && other.tag == "Track")
         {
             TriggerEvent();
             time.stopTimer.Invoke();
@@ -68,14 +73,16 @@ public class WrenchPuzzle : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-
+        test2.text = "";
+        test1.text = "triggered by " + other.name;
+        test2.text = other.tag + " this is the tag";
         if (!triggeredStart && other.name == startGo.name)
         {
             triggeredStart = true;
             startGo.GetComponent<Renderer>().material = green;
         }
         //start timer if start has been triggered and colliding with the course
-        if (triggeredStart && other.name == "Rail")
+        if (triggeredStart && other.tag == "Track")
         {
             time.startTimer.Invoke();
             //testTxt.text = "should startTime";

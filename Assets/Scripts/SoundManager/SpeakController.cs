@@ -59,7 +59,7 @@ public class SpeakController : MonoBehaviour
         else
         {
             AudioClip clip = speakQueue[0];
-            soundPool.SetupSoundPlayer(clip, player);
+            soundPool.SetupSoundPlayer(clip, player.gameObject,true);
             speakQueue.Remove(clip);
             yield return new WaitForSeconds(clip.length + timeBetweenSpeak);
             _Speak = StartCoroutine(SpeakRoutine());
