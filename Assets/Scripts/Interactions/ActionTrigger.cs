@@ -17,7 +17,12 @@ public class ActionTrigger : MonoBehaviour
         {
             foreach(InteractableFacade interactor in interactableFacades)
             {
-                interactor.gameObject.GetComponent<IAction>().DoAction();
+                IAction action = interactor.gameObject.GetComponent<IAction>();
+                if (action != null)
+                {
+                    action.DoAction();
+                }
+                
             }
         }
     }

@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test Scenes/Lukas Scene.unity
     guid: 035666b34ce51444fa0385c0f7e8dcc2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Test Scenes/Simon Scene.unity
     guid: 924f921e9e4f5a7419d7c34c9cf3198e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Scenes/Kevin Scene.unity
     guid: b434b6a358a5dc24ebd692a31c686772
   m_configObjects: {}
