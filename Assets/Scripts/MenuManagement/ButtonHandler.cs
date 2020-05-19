@@ -50,6 +50,13 @@ public class ButtonHandler : MonoBehaviour
             case "HiScores/Back":
                 genericMenuManager.ActivateMenu(StateEnum.MainMenu);
                 break;
+            case "Pause/Resume":
+                genericMenuManager.DeactivateMenu();
+                break;
+            case "Pause/Options":
+                callingMenu = CallingMenu.Pause;
+                genericMenuManager.ActivateMenu(StateEnum.OptionsMenu);
+                break;
         }
     }
     private void IncrementVolume()

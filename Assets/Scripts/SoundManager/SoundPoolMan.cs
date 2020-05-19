@@ -137,6 +137,20 @@ public class SoundPoolMan : MonoBehaviour
     {
         src.transform.SetParent(target);
     }
+    public void PauseAllSounds()
+    {
+        foreach(GameObject aS in pooledAudioSourceContainers)
+        {
+            aS.GetComponent<AudioSource>().Pause();
+        }
+    }
+    public void ResumeAllSounds()
+    {
+        foreach (GameObject aS in pooledAudioSourceContainers)
+        {
+            aS.GetComponent<AudioSource>().UnPause();
+        }
+    }
 }
 
 
