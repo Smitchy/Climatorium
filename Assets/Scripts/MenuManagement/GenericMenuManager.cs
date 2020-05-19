@@ -10,15 +10,18 @@ public class GenericMenuManager : MonoBehaviour
     public GameObject headsetAlias;
     public float menuOffset;
     public GameObject MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, HiScores, MainCanvas;
+    public GameObject laser;
     private GameObject currentMenu;
     private BooleanAction boolAction;
     private GameObject[] canvasRefs;
     [SerializeField]
     private LayerMask menuLayer;
+    private SoundPoolMan soundPoolMan;
 
     private void Awake()
     {
         startingMask = VRCamera.cullingMask;
+        soundPoolMan = FindObjectOfType<SoundPoolMan>();
         boolAction = GetComponent<BooleanAction>();
         MainCanvas.transform.position = headsetAlias.transform.position + headsetAlias.transform.forward * menuOffset;
         canvasRefs = new GameObject[] { MainMenu, PauseMenu, PlayerChangeMenu, EndGameMenu, Options, HiScores };
@@ -36,11 +39,13 @@ public class GenericMenuManager : MonoBehaviour
                 MainMenu.SetActive(true);
                 currentMenu = MainMenu;
                 CurrentState.SetStateStart(StateEnum.MainMenu);
+                soundPoolMan.PauseAllSounds();
                 break;
             case StateEnum.PauseMenu:
                 PauseMenu.SetActive(true);
                 currentMenu = PauseMenu;
                 CurrentState.SetStateStart(StateEnum.PauseMenu);
+                soundPoolMan.PauseAllSounds();
                 break;
             case StateEnum.OptionsMenu:
                 currentMenu.SetActive(false);
@@ -77,16 +82,19 @@ public class GenericMenuManager : MonoBehaviour
             ShowEverything();
             Time.timeScale = 1;
             CurrentState.SetStateEnd();
+            soundPoolMan.ResumeAllSounds();
         }
     }
     private void ShowUIOnly()
     {
         VRCamera.cullingMask = menuLayer;
+        laser.SetActive(true);
         Debug.Log("Showing UI");
         Time.timeScale = 0;
     }
     private void ShowEverything()
     {
+        laser.SetActive(false);
         VRCamera.cullingMask = startingMask;
     }
     private void DisableAllMenus()

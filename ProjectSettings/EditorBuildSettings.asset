@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Test Scenes/Rune Scene.unity
     guid: eebd4bbf9ea5e9c49b52c64fc8786e5a
   - enabled: 0

@@ -30,13 +30,11 @@ public class FaceDirection : MonoBehaviour
             if (transform.position.z > previousFrameZ && currentDirection != Direction.North)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log("North");
                 currentDirection = Direction.North;
             }
             if (transform.position.z < previousFrameZ && currentDirection != Direction.South)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
-                Debug.Log("South");
                 currentDirection = Direction.South;
             }
             previousFrameX = transform.position.x;
@@ -47,13 +45,11 @@ public class FaceDirection : MonoBehaviour
             if (transform.position.x > previousFrameX && currentDirection != Direction.East)
             {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
-                Debug.Log("East");
                 currentDirection = Direction.East;
             }
             if (transform.position.x < previousFrameX && currentDirection != Direction.West)
             {
                 transform.rotation = Quaternion.Euler(0, 270, 0);
-                Debug.Log("West");
                 currentDirection = Direction.West;
             }
             previousFrameX = transform.position.x;

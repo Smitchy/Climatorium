@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using VRTK.Prefabs.Interactions.Interactors;
+using TMPro;
 
 /// <summary>
 /// Contains all methods for the wrench puzzle, extends iPuzzle
@@ -54,10 +55,10 @@ public class WrenchPuzzle : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
-        if (!won && other.name == "Rail")
+        if (!won && other.tag == "Track")
         {
             TriggerEvent();
-            time.stopTimer.Invoke();
+            //time.stopTimer.Invoke();
 
         }
     }
@@ -68,22 +69,21 @@ public class WrenchPuzzle : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-
         if (!triggeredStart && other.name == startGo.name)
         {
             triggeredStart = true;
             startGo.GetComponent<Renderer>().material = green;
         }
         //start timer if start has been triggered and colliding with the course
-        if (triggeredStart && other.name == "Rail")
+        if (triggeredStart && other.tag == "Track")
         {
-            time.startTimer.Invoke();
+            //time.startTimer.Invoke();
             //testTxt.text = "should startTime";
         }
         if (other.name == endGo.name)
         {
             won = true;
-            time.win.Invoke();
+            //time.win.Invoke();
 
         }
     }
@@ -102,4 +102,6 @@ public class WrenchPuzzle : MonoBehaviour
     {
         ResetWrenchEvent.Invoke();
     }
+
+    
 }
