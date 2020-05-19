@@ -23,8 +23,6 @@ public class WrenchPuzzle : MonoBehaviour
     public InteractorFacade interactorScriptLeft, interactorScriptRight;
     public Timer time;
 
-    public TMP_Text test1, test2;
-
     private void Start()
     {
         if (ResetWrenchEvent == null)
@@ -56,13 +54,11 @@ public class WrenchPuzzle : MonoBehaviour
     /// <param name="other">should always be the track of the puzzle</param>
     private void OnTriggerExit(Collider other)
     {
-        test1.text = "";
-        test2.text = "exited " + other.name;
         //if(other.name == "Interactable.Primary_Grab.Secondary_Swap")
         if (!won && other.tag == "Track")
         {
             TriggerEvent();
-            time.stopTimer.Invoke();
+            //time.stopTimer.Invoke();
 
         }
     }
@@ -73,9 +69,6 @@ public class WrenchPuzzle : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        test2.text = "";
-        test1.text = "triggered by " + other.name;
-        test2.text = other.tag + " this is the tag";
         if (!triggeredStart && other.name == startGo.name)
         {
             triggeredStart = true;
@@ -84,14 +77,13 @@ public class WrenchPuzzle : MonoBehaviour
         //start timer if start has been triggered and colliding with the course
         if (triggeredStart && other.tag == "Track")
         {
-            time.startTimer.Invoke();
-            test2.text = "Started ";
+            //time.startTimer.Invoke();
             //testTxt.text = "should startTime";
         }
         if (other.name == endGo.name)
         {
             won = true;
-            time.win.Invoke();
+            //time.win.Invoke();
 
         }
     }
