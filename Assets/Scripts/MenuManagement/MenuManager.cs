@@ -5,6 +5,7 @@ using UnityEngine.XR;
 
 public class MenuManager : MonoBehaviour
 {
+#pragma warning disable CS0618
     private GenericMenuManager gMM;
     private UserPresenceState previousUserPresence;
 
@@ -24,7 +25,9 @@ public class MenuManager : MonoBehaviour
     }
     private void Update()
     {
+
         if (XRDevice.userPresence != previousUserPresence)
+
         {
             if (XRDevice.userPresence == UserPresenceState.NotPresent)
             {
@@ -41,4 +44,5 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         DisplayMenu(StateEnum.MainMenu);
     }
+#pragma warning restore CS0618
 }
