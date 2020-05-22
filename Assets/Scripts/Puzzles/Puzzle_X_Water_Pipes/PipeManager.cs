@@ -43,6 +43,7 @@ public class PipeManager : MonoBehaviour
 
     public void ResetPipePosition(GameObject pipe)
     {
+        Debug.Log("Straight pipe snap zone exited: " + straightPipeSnapZoneExited);
         if (pipe.tag.Equals("Straight") && straightPipeSnapZoneExited)
         { straightPipeSnapZoneFacade.Snap(pipe); }
 
