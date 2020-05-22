@@ -13,7 +13,6 @@ public class FaceDirection : MonoBehaviour
 
     public float distanceBeforeRotation;
 
-    // Start is called before the first frame update
     void Start()
     {
         previousFrameZ = transform.position.z;
@@ -22,7 +21,6 @@ public class FaceDirection : MonoBehaviour
         previousFramePosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (CheckZDistance())
@@ -54,7 +52,6 @@ public class FaceDirection : MonoBehaviour
             }
             previousFrameX = transform.position.x;
             previousFrameZ = transform.position.z;
-
         }
 
     }
