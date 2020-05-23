@@ -10384,6 +10384,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 800959146983565601, guid: 41a1e9fb36a053c47816467b106dcfd3,
+        type: 3}
+      propertyPath: puzMan
+      value: 
+      objectReference: {fileID: 44238269}
     - target: {fileID: 800959147140781487, guid: 41a1e9fb36a053c47816467b106dcfd3,
         type: 3}
       propertyPath: m_Layer
