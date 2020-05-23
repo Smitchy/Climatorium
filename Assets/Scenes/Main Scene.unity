@@ -11223,6 +11223,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8046305417916879358, guid: 41a1e9fb36a053c47816467b106dcfd3,
+        type: 3}
+      propertyPath: puzMan
+      value: 
+      objectReference: {fileID: 44238269}
     - target: {fileID: 8092638988203282574, guid: 41a1e9fb36a053c47816467b106dcfd3,
         type: 3}
       propertyPath: m_Layer
@@ -11330,6 +11335,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1576752553}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1576752557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7435629054950265650, guid: 41a1e9fb36a053c47816467b106dcfd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576752553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1576752558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576752557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929a49440584e6a4a8557c6a760558a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alarm: {fileID: 8300000, guid: 7c026689bf135df4a97b980caa469308, type: 3}
 --- !u!1 &1578974392
 GameObject:
   m_ObjectHideFlags: 0
@@ -13115,25 +13139,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6823601054845885286}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1943799983 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7405221662435156171, guid: 41a1e9fb36a053c47816467b106dcfd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1576752553}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1943799989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943799983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 929a49440584e6a4a8557c6a760558a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alarm: {fileID: 8300000, guid: 7c026689bf135df4a97b980caa469308, type: 3}
 --- !u!1 &1945716833
 GameObject:
   m_ObjectHideFlags: 0
