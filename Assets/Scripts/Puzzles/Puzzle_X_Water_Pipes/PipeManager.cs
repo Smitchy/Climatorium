@@ -7,8 +7,11 @@ public class PipeManager : MonoBehaviour
     public GameObject[] pipes;
     public SnapZoneFacade straightPipeSnapZoneFacade;
     public SnapZoneFacade cornerPipeSnapZoneFacade;
+    public ParticleSystem sinkWater;
     private bool straightPipeSnapZoneExited;
     private bool cornerPipeSnapZoneExited;
+    private bool allStraightPipesPlaced = false;
+    private bool allCornerPipesPlaced = false;
 
     public void SpawnNextPipe(string pipeTag)
     {
@@ -39,11 +42,20 @@ public class PipeManager : MonoBehaviour
                     return;
                 }
             }
+
+            if (tag.Equals("Straight"))
+            {  allStraightPipesPlaced = true; }
+
+            else
+            { allCornerPipesPlaced = true; }
+
+            if (allCornerPipesPlaced && allStraightPipesPlaced)
+            { sinkWater.Play(); }
+            
     }
 
     public void ResetPipePosition(GameObject pipe)
     {
-        Debug.Log("Straight pipe snap zone exited: " + straightPipeSnapZoneExited);
         if (pipe.tag.Equals("Straight") && straightPipeSnapZoneExited)
         { straightPipeSnapZoneFacade.Snap(pipe); }
 
@@ -62,5 +74,11 @@ public class PipeManager : MonoBehaviour
     public void SetCornerSnapZoneExited(bool value)
     {
         cornerPipeSnapZoneExited = value;
+    }
+
+    public void MakePipeUninteractable(SnapZoneFacade snapZone)
+    {
+        Debug.Log("Pipe snapped: " + snapZone.SnappedGameObject.name);
+        snapZone.SnappedGameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 }
