@@ -6,22 +6,16 @@ using TMPro;
 public class ColTest : MonoBehaviour
 {
 
-    public TMP_Text test;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public PuzzleManager puzzleManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        //test.text = other.name;
+        StartCoroutine(NextPuzzle());
+    }
+    private IEnumerator NextPuzzle()
+    {
+        yield return new WaitForSeconds(2.5f);
+        puzzleManager.NextPuzzle();
     }
 
 }
